@@ -23,7 +23,6 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-btn navbar-btn-right">
@@ -37,7 +36,7 @@
 				</div>
 			</div>
 		</nav>
-		<div id="sidebar-nav" class="sidebar">
+		<div id="sidebar-nav" class="sidebar" style="width:10%">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
@@ -48,7 +47,7 @@
 				</nav>
 			</div>
 		</div>
-		<div class="main">
+		<div class="main" style="width:90%">
 			<div class="main-content">
 				<div class="container-fluid">
 				</div>
@@ -62,54 +61,60 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>#</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Username</th>
-												<th>Username</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Steve</td>
-												<td>Jobs</td>
-												<td>@steve</td>
-												<td>@steve</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Simon</td>
-												<td>Philips</td>
-												<td>@simon</td>
-												<td><input type="button" class="btn btn-danger"value='删除' style='    height: inherit;
-    width: inherit;'>
-	<input type="button" class="btn btn-default"value='删除' style='    height: inherit;
-    width: inherit;'>
-<input type="button" class="btn btn-default"value='删除' style='    height: inherit;
-    width: inherit;'></td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Jane</td>
-												<td>Doe</td>
-												<td>@jane</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-	<script src="assets/vendor/jquery/jquery.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/scripts/klorofil-common.js"></script>
+		<th>设备编号</th>
+		<th>设备名字</th>
+		<th>设备系统</th>
+		<th>设备型号</th>
+		<th>价格</th>
+		<th>发票标号</th>
+		<th>设备权限</th>
+		<th>是否外接</th>
+		<th>外接日期</th>
+		<th>借设备人</th>
+		<th>购买的时间</th>
+		<th>设备状态</th>
+		<th>入库人</th>
+		<th>操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for shebei in shebei_list %}
+		<tr>
+						<td>{{shebei.shebei_id}}</td>
+						<td>{{shebei.shebei_name}}</td>
+						<td>{{shebei.shebei_xitong}}</td>
+				<td>{{shebei.shebei_xinghao}}</td>
+				<td>{{shebei.shebei_jiage}}</td>
+			<td>{{shebei.shebei_fapiaobianhao}}</td>
+				<td>{{shebei.shebei_quanxian}}</td>
+					<td>{{shebei.shebei_jie}}</td>
+					<td>{{shebei.shebei_date}}</td>
+					<td>{{shebei.shebei_user}}</td>
+					<td>{{shebei.gou_date}}</td>
+					<td>{{shebei.shebei_status}}</td>
+					<td>{{shebei.ruku_user}}</td>
+<td><p><input type="button" class="btn btn-danger"value='冻结' style=' height: inherit;width: inherit;'></p>
+<p>
+<input type="button" class="btn btn-default"value='编辑' style=' height: inherit;width: inherit;'></p></td></tr>
+    {% end %}
+</tbody>
+</table>
+</div>
+<div class="pagination">
+ {% raw str_page%}
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/scripts/klorofil-common.js"></script>
 </body>
 
 </html>

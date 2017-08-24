@@ -5,7 +5,6 @@ from models.dataconfig import db_session,Base,create_all
 from sqlalchemy import  Column,Integer,DateTime,Boolean,String,ForeignKey,desc,asc,Text
 from sqlalchemy.orm import  relationship,backref
 from untils.common import encrypt
-
 class User(Base):
 	__tablename__='users'
 	id=Column(Integer(),primary_key=True)
@@ -23,11 +22,13 @@ class User(Base):
 	def get_by_id(cls, id):
 		item = db_session.query(User).filter(User.id==id).first()
 		return item
-
 	@classmethod
 	def get_by_username(cls, username):
 		item = db_session.query(User).filter(User.username== username).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(Shebei).count()
 class Shebei(Base):
 	__tablename__='shebeis'
 	id=Column(Integer(),primary_key=True)
@@ -51,4 +52,7 @@ class Shebei(Base):
 	def get_by_name(cls,name):
 		item=db_session.query(Shebei).filter(Shebei.shebei_name==name).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(Shebei).count()
 
