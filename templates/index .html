@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>首页</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../static/css/reset.css">
+        <link rel="stylesheet" href="../static/css/supersized.css">
+        <link rel="stylesheet" href="../static/css/style.css">
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../static/style.css">
+	<link rel="stylesheet" href="../static/css/chartist-custom.css">
+	<link rel="stylesheet" href="../static/css/main.css">
+	<link rel="stylesheet" href="../static/css/demo.css">
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-btn navbar-btn-right">
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
+						<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
+						<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="main">
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title">设备统计</h3>
+							<p class="panel-subtitle"></p>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-download"></i></span>
+										<p>
+											<span class="number">{{user_num}}</span>
+											<span class="title">用户</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
+										<p>
+											<span class="number">{{shebei_num}}</span>
+											<span class="title">设备</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-eye"></i></span>
+										<p>
+											<span class="number">{{waijie_num}}</span>
+											<span class="title">借出</span>
+										</p>
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">最近借出记录</h3>
+									<div class="right">
+									</div>
+								</div>
+								<div class="panel-body no-padding">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>设备编号</th>
+												<th>设备名字</th>
+												<th>系统</th>
+												<th>借人</th>
+												<th>时间</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% for sheibei in shebei_list %}
+											<tr>
+												<td><a href="#">{{sheibei.shebei_id}}</a></td>
+												<td>{{sheibei.shebei_name}}</td>
+												<td>{{sheibei.shebei_xitong}}</td>
+												<td>{{sheibei.shebei_user}}</td>
+												<td><span class="label label-success">{{sheibei.shebei_date}}</span></td>
+											</tr>
+											{% end %}
+										</tbody>
+									</table>
+								</div>
+								<div class="panel-footer">
+									<div class="row">
+										<div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> </span></div>
+										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">更多</a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="assets/scripts/klorofil-common.js"></script>
+	<script>
+</body>
+
+</html>

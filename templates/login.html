@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备管理后台</title>
+    <link rel="stylesheet" href="../static/css/reset.css">
+        <link rel="stylesheet" href="../static/css/supersized.css">
+        <link rel="stylesheet" href="../static/css/style.css"
+</head>
+<body style="background-color: #8c8c8c">
+  <div class="page-container" >
+      <p>{% if errmsg %}
+									<p style="color: #b92c28">{{ str(errmsg)}}</p>
+									{% end %}</p>
+            <h1>登录</h1>
+            <form action="/login" method="post">
+                 {% raw xsrf_form_html() %}
+                <input type="text" name="username" class="username" placeholder="用户名">
+                <input type="password" name="password" class="password" placeholder="密码">
+                <button type="submit">登录</button>
+                <div class="error"><span></span></div>
+            </form>
+
+        </div>
+        <!-- Javascript -->
+        <script src="../static/js/jquery-1.8.2.min.js"></script>
+        <script src="../static/js/supersized.3.2.7.min.js"></script>
+        <script src="../static/js/supersized-init.js"></script>
+        <script src="../static/js/scripts.js"></script>
+
+    </body>
+
+</body>
+</html>
