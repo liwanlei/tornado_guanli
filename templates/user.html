@@ -24,10 +24,8 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
-							
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
 						</li>
-						
 					</ul>
 				</div>
 			</div>
@@ -36,9 +34,9 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
-						<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
-						<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
+<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
+<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
+	<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -52,7 +50,8 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">用户</h3>
 								</div>
-								<div class="panel-body">
+<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;margin-left: 2%;'>添加</button> 
+					<div class="panel-body">
 									<table class="table table-striped">
 										<thead>
 											<tr>
@@ -65,22 +64,27 @@
 										<th>密码</th>
 										</tr>
 					</thead>
-						<tbody>
+						<tbody style="text-align: initial;">
 						{% for user in user_list %}
-							<tr>
+							<tr >
 						<td>{{user.username}}</td>
 						<td>{{user.email}}</td>
 						<td>{{user.last_logtime}}</td>
 							<td>{{user.iphone}}</td>
 					{%if user.leves!=1 %}
-			<td><input type="button" class="btn btn-danger"value='设置管理员' style=' height: inherit;width: inherit;'></td>
-			{% end %}
+			<td><input type="button" class="btn btn-danger"value='设置管理' ></td>{% end %}
 				{%if user.leves!=0 %}
-				<td><input type="button" class="btn btn-danger"value='取消管理员' style=' height: inherit;width: inherit;'></td>
+				<td><input type="button" class="btn btn-danger" value="取消" style=" height: inherit;width: inherit;">	{% end %}</td>
+						
+						{%if user.status!=0 %}
+				<td><input type="button" class="btn btn-danger" value="解冻" style=" height: inherit;width: inherit;"></td></td>
 				{% end %}
-						<td>{{user.status}}</td>
-						<td>{{user.password}}</td>
-											</tr>
+				{%if user.status!=1 %}
+				<td><input type="button" class="btn btn-danger" value="冻结" style=" height: inherit;width: inherit;"></td>
+				{% end %}
+				</td>
+						<td><input type="button" class="btn btn-danger" value="重置" style=" height: inherit;width: inherit;"></td></td>
+											</tr>{% end %}
 										</tbody>
 									</table>
 								</div>

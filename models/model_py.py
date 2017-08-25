@@ -32,7 +32,7 @@ class User(Base):
 class Shebei(Base):
 	__tablename__='shebeis'
 	id=Column(Integer(),primary_key=True)
-	shebei_id=Column(Integer(),unique=True)
+	shebei_id=Column(String(32),unique=True)
 	shebei_name=Column(String(64))
 	shebei_xitong=Column(String(64))
 	shebei_xinghao=Column(String(255))

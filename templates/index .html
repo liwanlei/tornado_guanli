@@ -24,7 +24,7 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
 						</li>
 					</ul>
 				</div>
@@ -34,9 +34,9 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
-						<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
-						<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
+	<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
+		<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
+<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -53,28 +53,28 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-download"></i></span>
+		<span class="icon"><i class="fa fa-download"></i></span>
 										<p>
-											<span class="number">{{user_num}}</span>
-											<span class="title">用户</span>
+					<span class="number">{{user_num}}</span>
+							<span class="title">用户</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
+	<span class="icon"><i class="fa fa-shopping-bag"></i></span>
 										<p>
-											<span class="number">{{shebei_num}}</span>
+					<span class="number">{{shebei_num}}</span>
 											<span class="title">设备</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-eye"></i></span>
+			<span class="icon"><i class="fa fa-eye"></i></span>
 										<p>
-											<span class="number">{{waijie_num}}</span>
-											<span class="title">借出</span>
+					<span class="number">{{waijie_num}}</span>
+							<span class="title">借出</span>
 										</p>
 									</div>
 								</div>
@@ -86,12 +86,12 @@
 						<div class="col-md-12">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">最近借出记录</h3>
+						<h3 class="panel-title">最近借出记录</h3>
 									<div class="right">
 									</div>
 								</div>
-								<div class="panel-body no-padding">
-									<table class="table table-striped">
+							<div class="panel-body no-padding">
+							<table class="table table-striped">
 										<thead>
 											<tr>
 												<th>设备编号</th>
@@ -101,23 +101,23 @@
 												<th>时间</th>
 											</tr>
 										</thead>
-										<tbody>
-										{% for sheibei in shebei_list %}
-											<tr>
-												<td><a href="#">{{sheibei.shebei_id}}</a></td>
-												<td>{{sheibei.shebei_name}}</td>
-												<td>{{sheibei.shebei_xitong}}</td>
-												<td>{{sheibei.shebei_user}}</td>
-												<td><span class="label label-success">{{sheibei.shebei_date}}</span></td>
+							<tbody style="text-align: initial;">
+								{% for sheibei in shebei_list %}
+							<tr>
+							<td><a href="#">{{sheibei.shebei_id}}</a></td>
+						<td>{{sheibei.shebei_name}}</td>
+			<td>{{sheibei.shebei_xitong}}</td>
+		<td>{{sheibei.shebei_user}}</td>
+	<td><span class="">{{sheibei.shebei_date}}</span></td>
 											</tr>
-											{% end %}
+										{% end %}
 										</tbody>
 									</table>
 								</div>
 								<div class="panel-footer">
 									<div class="row">
-										<div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> </span></div>
-										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">更多</a></div>
+	<div class="col-md-0"><span class="panel-note"><i class="fa fa-clock-o"></i> </span></div>
+					<div class="col-md-12 text-right"></a></div>
 									</div>
 								</div>
 							</div>
