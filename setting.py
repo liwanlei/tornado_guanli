@@ -6,6 +6,7 @@ settings = dict(
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         cookie_secret="FhLXI+BRRomtuaG47hoXEg3JCdi0BUi8vrpWmoxaoyI=",
         xsrf_cookies=True,
+        login_url="/login",
         template_path=os.path.join(os.path.dirname(__file__), 'templates'),
         debug=True
     )

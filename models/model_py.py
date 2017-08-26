@@ -45,12 +45,17 @@ class Shebei(Base):
 	shebei_user=Column(String())
 	gou_date=Column(DateTime())
 	shebei_status=Column(String(16))
+	she_sta=Column(Integer(),default=0)
 	ruku_user=Column(Integer(),ForeignKey('users.id'))
 	def __repr__(self):
 		return self.shebei_name
 	@classmethod
 	def get_by_name(cls,name):
 		item=db_session.query(Shebei).filter(Shebei.shebei_name==name).first()
+		return item
+	@classmethod
+	def get_by_id(cls,id):
+		item=db_session.query(Shebei).filter(Shebei.id==id).first()
 		return item
 	@classmethod
 	def get_count(cls):
