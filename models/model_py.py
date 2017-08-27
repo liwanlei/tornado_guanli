@@ -15,7 +15,7 @@ class User(Base):
 	status=Column(Integer())
 	leves=Column(Integer())
 	iphone=Column(Integer())
-	shebeis=relationship('Shebei',backref='users')
+	shebei=relationship('Shebei',backref='users')
 	def __repr__(self):
 		return self.username
 	@classmethod

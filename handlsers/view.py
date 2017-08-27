@@ -78,4 +78,14 @@ class JieShebeiView(BaseHandler):
             jie.she_sta=0
             db_session.commit()
             self.redirect('/shebei')  
-        self.render('shebei.html')    
+        self.render('shebei.html')   
+class AddUserView(BaseHandler):
+    def get(self):
+        self.render('adduser.html',error_message=None)
+    def post(self):
+        print(self.get_argument('username'))
+        print(self.get_argument('password'))
+        print(self.get_argument('email'))
+        print(self.get_argument('iphone'))
+        print(self.get_argument('quanxian'))
+        self.render('adduser.html',error_message=None)
