@@ -29,6 +29,16 @@ class User(Base):
 	@classmethod
 	def get_count(cls):
 		return db_session.query(Shebei).count()
+	@classmethod
+	def add_new(cls,username,password,iphone,email,leves):
+		new=User(username=username,iphone=iphone,email=email,leves=leves)
+		new.password=encrypt(password)
+		new.status=0
+		db_session.add(new)
+		try:
+			db_session.commit()
+		except:
+			db_session.rollback()
 class Shebei(Base):
 	__tablename__='shebeis'
 	id=Column(Integer(),primary_key=True)

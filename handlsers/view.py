@@ -7,8 +7,9 @@ from handlsers.Basehandlers import BaseHandler
 import tornado.web
 from untils.pagination import Pagination
 from models.model_py import db_session 
+import re
 class IndexView(BaseHandler):
-    #@tornado.web.authenticated
+    @tornado.web.authenticated
     def get(self):
     	user_num=db_session.query(User).count()
     	shebei_num=db_session.query(Shebei).count()
@@ -16,15 +17,15 @@ class IndexView(BaseHandler):
     	shebei_list=db_session.query(Shebei).order_by(Shebei.shebei_date.desc())[:5]
     	self.render('index .html',user_num=user_num,shebei_num=shebei_num,waijie_num=waijie_num,shebei_list=shebei_list)
 class ShebeiView(BaseHandler):
-    #@tornado.web.authenticated
-	def get(self,page=1):
-		count=Shebei.get_count()
-		obj=Pagination(page,count)
-		shebei_list=db_session.query(Shebei).order_by(Shebei.shebei_date.desc())[int(obj.start):(int(page)) * (12)]
-		str_page = obj.string_pager('/shebei/')
-		self.render('shebei.html',shebei_list=shebei_list,str_page=str_page)
+    @tornado.web.authenticated
+    def get(self,page=1):
+        count=Shebei.get_count()
+        obj=Pagination(page,count)
+        shebei_list=db_session.query(Shebei).order_by(Shebei.shebei_date.desc())[int(obj.start):(int(page)) * (12)]
+        str_page = obj.string_pager('/shebei/')
+        self.render('shebei.html',shebei_list=shebei_list,str_page=str_page)
 class UserView(BaseHandler):
-    #@tornado.web.authenticated
+    @tornado.web.authenticated
     def get(self,page=1):
         count=User.get_count()
         obj=Pagination(page,count)
@@ -32,6 +33,7 @@ class UserView(BaseHandler):
         str_page = obj.string_pager('/user/')
         self.render('user.html',user_list=user_list,str_page=str_page)
 class AddShebei(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
         user_list=db_session.query(User).all()
         self.render('addshebei.html',user_list=user_list,error_message=None)
@@ -64,6 +66,7 @@ class AddShebei(BaseHandler):
             db_session.rollback()
             self.render('addshebei.html',user_list=user_list,error_message='添加失败')
 class DongjieShebeiView(BaseHandler):
+    @tornado.web.authenticated
     def get(self,id):
         dongjie=Shebei.get_by_id(id)
         if dongjie and dongjie.she_sta==0:
@@ -72,6 +75,7 @@ class DongjieShebeiView(BaseHandler):
             self.redirect('/shebei')  
         self.render('shebei.html')  
 class JieShebeiView(BaseHandler):
+    @tornado.web.authenticated
     def get(self,id):
         jie=Shebei.get_by_id(id)
         if jie and jie.she_sta==1:
@@ -80,12 +84,35 @@ class JieShebeiView(BaseHandler):
             self.redirect('/shebei')  
         self.render('shebei.html')   
 class AddUserView(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
         self.render('adduser.html',error_message=None)
     def post(self):
-        print(self.get_argument('username'))
-        print(self.get_argument('password'))
-        print(self.get_argument('email'))
-        print(self.get_argument('iphone'))
-        print(self.get_argument('quanxian'))
-        self.render('adduser.html',error_message=None)
+        username=self.get_argument('username')
+        password=self.get_argument('password')
+        email=(self.get_argument('email'))
+        iphone=(self.get_argument('iphone'))
+        quanxian=(self.get_argument('quanxian'))
+        if not(username and password and email and iphone):
+            self.render('adduser.html',error_message='请完整填写信息')
+        user=User.get_by_username(username)
+        p3 = re.compile('^0\d{2,3}\d{7,8}$|^1[358]\d{9}$|^147\d{8}|[^\._-][\w\.-]+@(?:[A-Za-z0-9]+\.)+[A-Za-z]+')
+        emailor = p3.match(email)
+        if not emailor:
+            self.render('adduser.html',error_message='邮箱格式不对')
+        if user:
+            self.render('adduser.html',error_message='用户已经存在')
+        try:
+            User.add_new(username=username,password=password,iphone=iphone,email=email,leves=int(quanxian))
+            self.redirect('/user')
+            return
+        except Exception as e:
+            raise e
+            self.render('adduser.html',error_message='添加失败')
+class QuxiaoAdmin(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        user=User.get_by_id(id)
+        if not user:
+            self.render('user.html')
+        print(self.get_current_user())
