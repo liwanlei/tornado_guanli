@@ -21,9 +21,9 @@ class LoginView(BaseHandler):
             self.write(dict(errmsg=error_message1['100']))
         user = User.get_by_username(username)
         if not user:
-            self.render('login.html', error_message=error_message1['101'])
+            self.render('login.html', errmsg=error_message1['101'])
         if user.password != encrypt(password):
-            self.render('login.html', error_message=error_message1['102'])
+            self.render('login.html', errmsg=error_message1['102'])
         self.set_secure_cookie("user_id", str(user.id), expires_days=7)
         self.redirect('/index')
 class LogoutView(BaseHandler):

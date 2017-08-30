@@ -8,6 +8,7 @@ import tornado.web
 from untils.pagination import Pagination
 from models.model_py import db_session 
 import re
+from untils.common import encrypt
 class IndexView(BaseHandler):
     @tornado.web.authenticated
     def get(self):
@@ -103,7 +104,7 @@ class AddUserView(BaseHandler):
         if user:
             self.render('adduser.html',error_message='用户已经存在')
         try:
-            User.add_new(username=username,password=password,iphone=iphone,email=email,leves=int(quanxian))
+            User.add_new(username=username,password=encrypt(password),iphone=iphone,email=email,leves=int(quanxian))
             self.redirect('/user')
             return
         except Exception as e:
@@ -114,5 +115,88 @@ class QuxiaoAdmin(BaseHandler):
     def get(self,id):
         user=User.get_by_id(id)
         if not user:
-            self.render('user.html')
-        print(self.get_current_user())
+            self.redirect('/user')
+        login_user=self.get_current_user()
+        if login_user.leves!=1:
+            self.redirect('/user')
+        if login_user ==user:
+            self.redirect('/user')
+        user.leves=0
+        try:
+            db_session.commit()
+            self.redirect('/user')
+        except:
+            db_session.rollback()
+            self.redirect('/user')
+class ShezhiAdmin(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        user=User.get_by_id(id)
+        if not user:
+            self.redirect('/user')
+        login_user=self.get_current_user()
+        if login_user.leves!=1:
+            self.redirect('/user')
+        if login_user ==user:
+            self.redirect('/user')
+        user.leves=1
+        try:
+            db_session.commit()
+            self.redirect('/user')
+        except:
+            db_session.rollback()
+            self.redirect('/user')
+class DongjieUser(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        user=User.get_by_id(id)
+        if not user:
+            self.redirect('/user')
+        login_user=self.get_current_user()
+        if login_user.leves!=1:
+            self.redirect('/user')
+        if login_user ==user:
+            self.redirect('/user')
+        user.status=1
+        try:
+            db_session.commit()
+            self.redirect('/user')
+        except:
+            db_session.rollback()
+            self.redirect('/user')
+class JieDUser(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        user=User.get_by_id(id)
+        if not user:
+            self.redirect('/user')
+        login_user=self.get_current_user()
+        if login_user.leves!=1:
+            self.redirect('/user')
+        if login_user ==user:
+            self.redirect('/user')
+        user.status=0
+        try:
+            db_session.commit()
+            self.redirect('/user')
+        except:
+            db_session.rollback()
+            self.redirect('/user')
+class ChongzhiUser(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        user=User.get_by_id(id)
+        if not user:
+            self.redirect('/user')
+        login_user=self.get_current_user()
+        if login_user.leves!=1:
+            self.redirect('/user')
+        if login_user ==user:
+            self.redirect('/user')
+        user.password=encrypt('111111')
+        try:
+            db_session.commit()
+            self.redirect('/user')
+        except:
+            db_session.rollback()
+            self.redirect('/user')

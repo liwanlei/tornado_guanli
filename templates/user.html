@@ -67,19 +67,19 @@
 						<td>{{user.email}}</td>
 						<td>{{user.last_logtime}}</td>
 							<td>{{user.iphone}}</td>
-					{%if user.leves!=1 %}
-			<td><input type="button" class="btn btn-danger"value='设置管理' style=" height: inherit;width: inherit;"></td>{% end %}
-				{%if user.leves!=0 %}
-				<td><input type="button" class="btn btn-danger" value="取消管理" style=" height: inherit;width: inherit;">	{% end %}</td>
-						{%if user.status!=0 %}
-				<td><input type="button" class="btn btn-danger" value="解冻" style=" height: inherit;width: inherit;"></td></td>
+					{%if user.leves==0 %}
+<td><a href="/shezhi/{{user.id}}"><input type="button" class="btn btn-danger"value='设置管理' style=" height: inherit;width: inherit;"></a></td>{% end %}
+			{%if user.leves==1 %}
+	<td><a href="/quxiao/{{user.id}}"><input type="button" class="btn btn-danger" value="取消管理" style=" height: inherit;width: inherit;">	</a>{% end %}</td>
+						{%if user.status==1%}
+	<td><a href="/jiedong1/{{user.id}}"><input type="button" class="btn btn-danger" value="解冻" style=" height: inherit;width: inherit;"></a></td></td>
 				{% end %}
-				{%if user.status!=1 %}
-				<td><input type="button" class="btn btn-danger" value="冻结" style=" height: inherit;width: inherit;"></td>
+				{%if user.status==0 %}
+<td><a href="/dongjie1/{{user.id}}"><input type="button" class="btn btn-danger" value="冻结" style=" height: inherit;width: inherit;"></a></td>
 				{% end %}
 				</td>
-						<td><input type="button" class="btn btn-danger" value="重置" style=" height: inherit;width: inherit;"></td></td>
-											</tr>{% end %}
+<td><a href="/chongzhi/{{user.id}}"><input type="button" class="btn btn-danger" value="重置" style=" height: inherit;width: inherit;"></a></td></td>
+									</tr>{% end %}
 										</tbody>
 									</table>
 								</div>
