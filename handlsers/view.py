@@ -200,3 +200,17 @@ class ChongzhiUser(BaseHandler):
         except:
             db_session.rollback()
             self.redirect('/user')
+class EditShebei(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        user_list=db_session.query(User).all()
+        shebei=Shebei.get_by_id(id)
+        if not shebei:
+            self.redirect('/shebei')
+        self.render('edit.html',shebei=shebei,user_list=user_list)
+    def post(self,id):
+        user_list=db_session.query(User).all()
+        shebei=Shebei.get_by_id(id)
+        if not shebei:
+            self.redirect('/shebei')
+        self.render('edit.html',shebei=shebei,user_list=user_list)

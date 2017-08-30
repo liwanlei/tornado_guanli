@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+	<title>编辑设备</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../static/css/reset.css">
+       <link rel="stylesheet" href="../static/css/supersized.css">
+        <link rel="stylesheet" href="../static/css/style.css">
+<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+<link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />   
+	<link rel="stylesheet" href="../static/css/main.css">
+	<link rel="stylesheet" href="../static/css/demo.css">
+<script src="../static/js/jquery-1.8.2.min.js"></script>    
+<script src="../static/js/bootstrap-datetimepicker.min.js"></script> 
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script> 
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-btn navbar-btn-right">
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div id="sidebar-nav" class="sidebar" style="width:10%">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+			<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
+			<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
+			<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="main" style="width:90%">
+			<div class="main-content">
+			<div class="container-fluid"></div>
+					<div class="row">
+						<div class="col-md-12" >
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">编辑设备</h3>
+								{%if error_message%}
+								<p style="color:red">{{error_message}}</p>{%end%}
+								</div>
+			<form action="/addshebei" method="POST" >
+			{% raw xsrf_form_html() %}
+								<div class="panel-body">
+	<p>设备编号：<input type="text" name="shebeibianhao" value="{{shebei.shebei_id}}"></p>
+	<p>设备名字：<input type="text" name="shebeiname" value="{{shebei.shebei_name}}"></p>
+	<p>设备系统：<select  class="form-control" name="xitong" >
+<option  value = "IOS"  >IOS</option>
+<option  value = "Android"  >Android</option></select></p>
+<p>设备型号：<input type="text" name="shebeixinghao" value="{{shebei.shebei_xinghao}}"></p>
+<p>设备价格：<input type="text" name="jiage" value="{{shebei.shebei_jiage}}"></p>&nbsp;&nbsp;
+<p>发票标号：<input type="text" name="fapiao" value="{{shebei.shebei_fapiaobianhao}}"></p>&nbsp;&nbsp;
+<p>设备权限：<select class="form-control" name='quanxian'>
+<option  value = "Flase" name='quanxian'>否</option >
+<option  value = "True" name='quanxian'>是</option ></select></p>
+<p>外借：<select class="form-control" name='quanxian'>
+<option  value = "Flase" name='quanxian'>否</option >
+<option  value = "True" name='quanxian'>是</option ></select></p>
+<p>外接人  ：<select  class="form-control" name='tianjia'>
+	{%for user in user_list%}
+<option  value = "{{user.id}}" name='tianjia'>{{user.username}}</option >
+{%end%}</select></p>
+<p>外借时间：<input type="date" name="goumai" value="{{shebei.shebei_date}}"></p>&nbsp;&nbsp;
+<p>购买时间：<input type="date" name="goumai" value="{{shebei.gou_date}}"></p>&nbsp;&nbsp;
+<p>设备状态：<select  class="form-control" name='shebeizhuangtai' >
+<option  value = "正常" name="shebeizhuangtai">正常</option >
+<option  value = "维修" name="shebeizhuangtai">维修</option ></select></p>&nbsp;&nbsp;
+<p>入库人  ：<select  class="form-control" name='tianjia'>
+	{%for user in user_list%}
+<option  value = "{{user.id}}" name='tianjia'>{{user.username}}</option >
+{%end%}</p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one"></p></form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
