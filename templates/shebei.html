@@ -1,42 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<title>设备详情</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link rel="stylesheet" href="../static/css/reset.css">
-<link rel="stylesheet" href="../static/css/bootstrap.min.css">
-<link rel="stylesheet" href="../static/css/style.css">
-<link rel="stylesheet" href="../static/css/main.css">
-<link rel="stylesheet" href="../static/css/demo.css">
-</head>
-<body>
-	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-			<div class="navbar-btn navbar-btn-right">
-				</div>
-				<div id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">  <span>Samuel</span> </a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	<div id="sidebar-nav" class="sidebar" style="width:10%">
-			<div class="sidebar-scroll">
-				<nav>
-					<ul class="nav">
-		<li><a href="/index" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
-		<li><a href="/shebei" class=""><i class="lnr lnr-code"></i> <span>设备</span></a></li>
-		<li><a href="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户</span></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+{% extends "base.html" %}
+{%block hellw%}
 		<div class="main" style="width:90%">
 			<div class="main-content">
 				<div class="container-fluid">
@@ -78,31 +41,27 @@
 				<td>{{shebei.shebei_xinghao}}</td>
 				<td>{{shebei.shebei_jiage}}</td>
 			<td>{{shebei.shebei_fapiaobianhao}}</td>
-				<td>{{shebei.shebei_quanxian}}</td>
-					<td>{{shebei.shebei_jie}}</td>
+{% if shebei.shebei_quanxian==True%}
+				<td>超级权限</td>
+				{% elif shebei.shebei_quanxian!=True%}
+				<td>无</td>{%end%}
+				{% if shebei.shebei_jie==True%}
+				<td>外借</td>
+				{% elif shebei.shebei_jie==Flase%}
+				<td>没有</td>{%end%}
 					<td>{{shebei.shebei_date}}</td>
 					<td>{{shebei.shebei_user}}</td>
 					<td>{{shebei.gou_date}}</td>
 					<td>{{shebei.shebei_status}}</td>
-					<td>{{shebei.users}}</td>
+					<td>{{shebei.users}}</td>	
 <td>
-{%if shebei.she_sta==1%}<button type="button" class="btn btn-default"value='解冻' style=' height: inherit;width: inherit;'><a href="/jie/{{shebei.id}}">解冻</a></button> {%end%}
-{%if shebei.she_sta==0%}<button type="button" class="btn btn-default"value='冻结' style=' height: inherit;width: inherit;'><a href="/dongjie/{{shebei.id}}">冻结</a></button>{%end%}
-<input type="button" class="btn btn-default"value='编辑' style=' height: inherit;width: inherit;'></td></tr>
+{%if shebei.she_sta==1%}<button type="button" class="btn btn-default"value='解冻' style=' height: inherit;width: inherit;'><a href="/jie/{{shebei.id}}">删除</a></button> {%end%}
+{%if shebei.she_sta==0%}<button type="button" class="btn btn-default"value='冻结' style=' height: inherit;width: inherit;'><a href="/dongjie/{{shebei.id}}">恢复</a></button>{%end%}
+<a href="/edit_shebei/{{shebei.id}}"><input type="button" class="btn btn-default"value='编辑' style=' height: inherit;width: inherit;'></a></td></tr>
     {% end %}
 </tbody>
 </table>
 </div>
 <div class="pagination">
  {% raw str_page%}
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+{%end%}

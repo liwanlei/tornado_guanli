@@ -207,10 +207,55 @@ class EditShebei(BaseHandler):
         shebei=Shebei.get_by_id(id)
         if not shebei:
             self.redirect('/shebei')
-        self.render('edit.html',shebei=shebei,user_list=user_list)
+        self.render('edit.html',shebei=shebei,error_message=None,user_list=user_list)
     def post(self,id):
         user_list=db_session.query(User).all()
         shebei=Shebei.get_by_id(id)
         if not shebei:
+            self.redirect('/shebei',error_message='设备找不到')
+        bianhao=self.get_argument('shebeibianhao')
+        fapiao=self.get_argument('fapiao')
+        shebeiname=self.get_argument('shebeiname')
+        xitong=self.get_argument('xitong')
+        shebeixinghao=self.get_argument('shebeixinghao')
+        quanxian=self.get_argument('quanxian')
+        goumaidate=self.get_argument('goumai')
+        jiage=self.get_argument('jiage')
+        shebeizhuangtai=self.get_argument('shebeizhuangtai')
+        tianjia=self.get_argument('tianjia')
+        try:
+            goumaidate=datetime.datetime.strptime(goumaidate,"%Y-%m-%d")
+        except Exception as e:
+            self.render('edit.html',user_list=user_list,error_message='日期格式不对，请填写例如2017-1-19',shebei=shebei)
+        waijietime=self.get_argument('waijietime')
+        try:
+            waijietime=datetime.datetime.strptime(waijietime,"%Y-%m-%d")
+        except Exception as e:
+            self.render('edit.html',user_list=user_list,error_message='日期格式不对，请填写例如2017-1-19',shebei=shebei)
+        waijie_user=self.get_argument('waijie')
+        waijie_s=self.get_argument('waijie_s')
+        if not (shebeiname and bianhao and shebeixinghao and fapiao and quanxian):
+            self.render('edit.html',user_list=user_list,error_message='请准确填写信息',shebei=shebei)
+        try:
+            jiage=int(jiage)
+        except Exception as e:
+            self.render('edit.html',user_list=user_list,error_message='价格只能是数字',shebei=shebei)
+        shebei.shebei_id=bianhao
+        shebei.shebei_name=shebeiname
+        shebei.shebei_xitong=xitong
+        shebei.shebei_xinghao=shebeixinghao
+        shebei.shebei_jiage=jiage
+        shebei.shebei_fapiaobianhao=fapiao
+        shebei.shebei_quanxian=quanxian
+        shebei.shebei_jie=waijie_s
+        shebei.shebei_date=waijietime
+        shebei.shebei_user=waijie_user
+        shebei.gou_date=goumaidate
+        shebei.shebei_status=shebeizhuangtai
+        shebei.ruku_user=tianjia
+        try:
+            db_session.commit()
             self.redirect('/shebei')
-        self.render('edit.html',shebei=shebei,user_list=user_list)
+        except Exception as e:
+            db_session.rollback()
+            self.render('edit.html',shebei=shebei,user_list=user_list,error_message='编辑失败')
