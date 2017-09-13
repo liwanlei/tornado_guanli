@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{%block hellw%}
+		<div class="main" style="width:90%">
+			<div class="main-content">
+			<div class="container-fluid"></div>
+					<div class="row">
+						<div class="col-md-12" >
+							<div class="panel">
+								<div class="panel-heading">
+					<h3 class="panel-title">添加测试报告</h3>
+					{%if error_message%}
+		<p style="color:red">{{error_message}}</p>{%end%}</div>
+		<form action="/addtestresult" method="POST" enctype="multipart/form-data" >
+			{% raw xsrf_form_html() %}
+								<div class="panel-body">
+<p>项目：<select  class="form-control" name='porject'>
+	{%for porject in porjects%}
+<option  value = "{{porject.id}}" name='porject'>{{porject.name}}</option >
+{%end%}</p>
+<p>文件上传：<input type="file" name="file" ></p>
+<p>一级bug量：<input type="text" name="firstbug"  style="background-color:dimgrey" ></p>
+<p>测试者：<select multiple  class="form-control" name='ceshizhe'>
+	{%for user in user_list%}
+<option  value = "{{user.username}}" name='ceshizhe'>{{user.username}}</option >
+{%end%}</select></p>
+<p>发送<select class="form-control" name='fasong'>
+<option  value = "Flase" name='fasong'>否</option >
+<option  value = "True" name='fasong'>是</option ></select></p>
+<p>测试时间：<input type="date" name="testtime" value="2017-08-13" style="background-color:dimgrey"></p>&nbsp;&nbsp;
+<p>上传者：<select  class="form-control" name='user_shang'>
+	{%for user in user_list%}
+<option  value = "{{user.id}}" name='user_shang'>{{user.username}}</option >
+{%end%}</p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one" style="background-color:cornflowerblue"></p></form>
+{%end%}

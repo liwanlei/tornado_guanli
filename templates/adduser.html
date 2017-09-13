@@ -12,7 +12,7 @@
     <p style="color:red">{{error_message}}</p>{%end%} </div>
             <form action="/adduser" method="POST" >
             {% raw xsrf_form_html() %}
-                        <div class="panel-body">
+                <div class="panel-body">
 <p>用户名：<input type="text" name="username" ></p>
 <p>用户密码：<input type="password" name="password" ></p>
 <p>用户邮箱：<input type="text" name="email" ></p>

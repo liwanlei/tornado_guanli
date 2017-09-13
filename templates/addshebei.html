@@ -7,10 +7,9 @@
 						<div class="col-md-12" >
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">添加设备</h3>
-								{%if error_message%}
-								<p style="color:red">{{error_message}}</p>{%end%}
-								</div>
+							<h3 class="panel-title">添加设备</h3>
+							{%if error_message%}
+		<p style="color:red">{{error_message}}</p>{%end%}</div>
 			<form action="/addshebei" method="POST" >
 			{% raw xsrf_form_html() %}
 								<div class="panel-body">

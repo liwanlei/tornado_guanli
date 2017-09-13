@@ -1,67 +1,44 @@
 {% extends "base.html" %}
 {%block hellw%}
-<div class="main" style="width:90%"> 
-    <div class="main-content">
-    <div class="container-fluid">
-        <div class="panel panel-headline">
-        <div class="panel-heading">
-        <h3 class="panel-title">测试报告管理</h3>
-        <p class="panel-subtitle"></p> </div>
-            <div class="panel-body">
-            <div class="row">
-            <div class="col-md-3">
-            <div class="metric">
-<span class="icon"><i class="fa fa-download"></i></span><p>
-            <span class="number"></span>
-        <span class="title"></span></p></div></div>
-                    <div class="col-md-3">
-                        <div class="metric">
-<span class="icon"><i class="fa fa-shopping-bag"></i></span><p>
-    <span class="number">{{shebei_num}}</span>
-    <span class="title">设备</span></p></div> </div>
-                        <div class="col-md-3">
-                             <div class="metric">
- <span class="icon"><i class="fa fa-eye"></i></span>
-                                        <p>
-        <span class="number">{{waijie_num}}</span>
-                <span class="title">借出</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
+        <div class="main" style="width:90%">
+            <div class="main-content">
+                <div class="container-fluid">
+                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
                     <div class="panel-heading">
-            <h3 class="panel-title">最近借出记录</h3>
-                 <div class="right"></div></div>
-                 <div class="panel-body no-padding">
-                <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>设备编号</th>
-                        <th>设备名字</th>
-                        <th>系统</th>
-                        <th>借人</th>
-                        <th>时间</th>
-                    </tr>
-                    </thead>
-            <tbody style="text-align: initial;">
-    {% for sheibei in shebei_list %}<tr>
-        <td><a href="#">{{sheibei.shebei_id}}</a></td>
-                <td>{{sheibei.shebei_name}}</td>
-            <td>{{sheibei.shebei_xitong}}</td>
-        <td>{{sheibei.shebei_user}}</td>
-<td><span class="">{{sheibei.shebei_date}}</span></td>
-                                            </tr>
-                                {% end %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                        <div class="panel-footer">
-     <div class="row">
-    <div class="col-md-0"><span class="panel-note"><i class="fa fa-clock-o"></i> </span></div>
-    {%end%}
+            <h3 class="panel-title">测试报告</h3></div>
+<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
+<a href="/addtestresult">添加</a></button> 
+                                <div class="panel-body">
+                    <table class="table table-striped">
+                    <thead><tr>
+        <th>项目名</th>
+        <th>创建时间</th>
+        <th>一级bug量</th>
+        <th>测试人员</th>
+        <th>是否发送</th>
+        <th>创建者</th>
+        <th>操作</th></tr></thead>
+        <tbody style="text-align: initial;">
+        {% for testresult in testresults %}
+        <tr> <td>{{testresult.projects}}</td>
+                        <td>{{testresult.creat_time}}</td>
+                        <td>{{testresult.bug_first}}</td>
+                        <td>{{testresult.ceshirenyuan}}</td>
+                <td>{{testresult.is_send}}</td>
+                <td>{{testresult.users}}</td>  
+<td>
+{%if testresult.status==0%}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/deleresult/{{testresult.id}}">删除</a></button>
+{%elif testresult.status==1 %}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetresult/{{testresult.id}}">恢复</a></button>
+{% end %}
+</td>{%end%}</tr>
+</tbody>
+</table>
+</div>
+<div class="pagination">
+ {% raw str_page%}
+{%end%}

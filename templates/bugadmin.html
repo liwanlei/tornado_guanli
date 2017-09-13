@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+                <div class="container-fluid">
+                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                    <div class="panel-heading">
+            <h3 class="panel-title">bug管理</h3></div>
+<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
+<a href="/addtestresult">添加</a></button> 
+                                <div class="panel-body">
+                    <table class="table table-striped">
+                    <thead><tr>
+        <th>项目名称</th>
+        <th>bug名称</th>
+        <th>bug等级</th>
+        <th>版本号</th>
+        <th>是否确认</th>
+        <th>解决方案</th>
+        <th>发送给谁</th>
+        <th>操作</th></tr></thead>
+        <tbody style="text-align: initial;">
+        {% for bug in bugs %}
+        <tr> <td>{{bug.projects}}</td>
+                        <td>{{bug.bugname}}</td>
+                        <td>{{bug.bugdengji}}</td>
+                        <td>{{bug.banbens}}</td>
+                <td>{{bug.is_que}}</td>
+                <td>{{bug.bug_jiejuefangan}}</td>
+                <td>{{bug.bug_send}}</td>   
+<td>
+{%if bug.status==0%}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">删除</a></button>
+{%elif bug.status==1 %}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">恢复</a></button>
+{% end %}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">关闭</a></button
+</td>{%end%}</tr>
+</tbody>
+</table>
+</div>
+<div class="pagination">
+ {% raw str_page%}
+{%end%}

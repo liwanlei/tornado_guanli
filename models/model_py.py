@@ -5,6 +5,7 @@ from models.dataconfig import db_session,Base,create_all
 from sqlalchemy import  Column,Integer,DateTime,Boolean,String,ForeignKey,desc,asc,Text
 from sqlalchemy.orm import  relationship,backref
 from untils.common import encrypt
+import datetime
 class User(Base):
 	__tablename__='users'
 	id=Column(Integer(),primary_key=True)
@@ -15,6 +16,7 @@ class User(Base):
 	status=Column(Integer())
 	leves=Column(Integer())
 	iphone=Column(Integer())
+	Projects=relationship('Project',backref='users')
 	shebei=relationship('Shebei',backref='users')
 	file=relationship('FilePan',backref='users')
 	banben=relationship('BanbenWrite',backref='users')
@@ -83,6 +85,8 @@ class TestResult(Base):
 	bug_first=Column(Integer())
 	ceshirenyuan=Column(String(255))
 	is_send=Column(Boolean(),default=True)
+	filepath=Column(String(64))
+	status=Column(Integer(),default=0)
 	user_id=Column(Integer(),ForeignKey('users.id'))
 	def __repr__(self):
 		return self.porject_name
@@ -98,15 +102,18 @@ class TestResult(Base):
 	def get_by_user_id(cls,user_id):
 		item=db_session.query(TestResult).filter(TestResult.user_id==user_id).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(TestResult).count()
 class BanbenWrite(Base):
 	__tablename__='banbens'
 	id=Column(Integer(),primary_key=True)
 	porject_id=Column(Integer(),ForeignKey('projects.id'))
-	creat_time=Column(DateTime())
+	creat_time=Column(DateTime(),default=datetime.datetime.now())
 	banbenhao=Column(String(32))
-	is_xian=Column(Boolean())
-	is_test=Column(Boolean())
-	test_user=Column(String(64))
+	is_xian=Column(Boolean(),default=False)
+	is_test=Column(Boolean(),default=False)
+	status=Column(Integer(),default=0)
 	user_id=Column(Integer(),ForeignKey('users.id'))
 	bugadmin=relationship('BugAdmin',backref='banbens')
 	def __repr__(self):
@@ -123,6 +130,9 @@ class BanbenWrite(Base):
 	def get_by_user_id(cls,user_id):
 		item=db_session.query(BanbenWrite).filter(BanbenWrite.user_id==user_id).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(BanbenWrite).count()
 class FilePan(Base):
 	__tablename__='files'
 	id=Column(Integer(),primary_key=True)
@@ -130,6 +140,7 @@ class FilePan(Base):
 	file_name=Column(String(64))
 	down_count=Column(Integer(),default=0)
 	creat_time=Column(DateTime())
+	status=Column(Integer(),default=0)
 	down_url=Column(String(64))
 	is_tui=Column(Boolean(),default=False)
 	user_id=Column(Integer(),ForeignKey('users.id'))
@@ -147,12 +158,16 @@ class FilePan(Base):
 	def get_by_user_id(cls,user_id):
 		item=db_session.query(FilePan).filter(FilePan.user_id==user_id).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(FilePan).count()
 class BugAdmin(Base):
 	__tablename__='bugadmins'
 	id=Column(Integer(),primary_key=True)
 	porject_id=Column(Integer(),ForeignKey('projects.id'))
 	bugname=Column(String(64))
 	bugdengji=Column(String(64))
+	bugtime=Column(DateTime(),default=datetime.datetime.now())
 	bug_miaoshu=Column(String(255))
 	ban_id=Column(Integer(),ForeignKey('banbens.id'))
 	fujian=Column(String(64))
@@ -176,6 +191,9 @@ class BugAdmin(Base):
 	def get_by_porject_name(cls,porject_name):
 		item=db_session.query(BugAdmin).filter(BugAdmin.porject_name==porject_name).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(BugAdmin).count()
 class TestCase(Base):
 	__tablename__='testcases'
 	id=Column(Integer(),primary_key=True)
@@ -184,6 +202,7 @@ class TestCase(Base):
 	case_qianzhi=Column(String())
 	case_buzhou=Column(String())
 	case_yuqi=Column(String())
+	status=Column(Integer(),default=0)
 	case_crea_time=Column(DateTime())
 	user_id=Column(Integer(),ForeignKey('users.id'))
 	def __repr__(self):
@@ -197,9 +216,12 @@ class TestCase(Base):
 		item=db_session.query(TestCase).filter(TestCase.casename==casename).first()
 		return item
 	@classmethod
-	def get_by_id(Cls,id):
+	def get_by_id(cls,id):
 		item=db_session.query(TestCase).filter(TestCase.id==id).first()
 		return item
+	@classmethod
+	def get_count(cls):
+		return db_session.query(TestCase).count()
 class BugLog(Base):
 	__tablename__='buglogs'
 	id=Column(Integer(),primary_key=True)
@@ -225,6 +247,7 @@ class Project(Base):
 	__tablename__='projects'
 	id=Column(Integer(),primary_key=True)
 	name=Column(String(64))
+	user_id=Column(Integer(),ForeignKey('users.id'))
 	bug_log=relationship('BugAdmin',backref='projects')
 	banben=relationship('BanbenWrite',backref='projects')
 	testresult=relationship('TestResult',backref='projects')

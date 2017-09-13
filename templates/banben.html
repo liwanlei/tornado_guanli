@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+                <div class="container-fluid">
+                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                    <div class="panel-heading">
+            <h3 class="panel-title">版本管理</h3></div>
+<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
+<a href="/addbanben">添加版本号</a></button> 
+<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
+<a href="/addproject">添加项目</a></button> 
+                                <div class="panel-body">
+                    <table class="table table-striped">
+                    <thead><tr>
+        <th>项目</th>
+        <th>版本号</th>
+        <th>创建时间</th>
+        <th>是否在线上</th>
+        <th>是否测试</th>
+        <th>创建者</th>
+        <th>操作</th></tr></thead>
+        <tbody style="text-align: initial;">
+        {% for banbnen in banbnens %}
+        <tr> <td>{{banbnen.projects}}</td>
+                        <td>{{banbnen.banbenhao}}</td>
+                        <td>{{banbnen.creat_time}}</td>
+                        <td>{{banbnen.is_xian}}</td>
+                        <td>{{banbnen.is_test}}</td>
+                <td>{{banbnen.users}}</td>  
+<td>
+{%if banbnen.status==0%}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/delebanben/{{banbnen.id}}">删除</a></button>
+{%elif banbnen.status==1 %}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetbanben/{{banbnen.id}}">恢复</a></button>
+{% end %}
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">编辑</a></button>
+</td>{%end%}</tr>
+</tbody>
+</table>
+</div>
+<div class="pagination">
+ {% raw str_page%}
+{%end%}

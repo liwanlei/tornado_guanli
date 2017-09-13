@@ -23,5 +23,5 @@ def main():
 	http_server.listen(options.port)
 	tornado.ioloop.IOLoop.current().start()
 if __name__ == '__main__':
-	# main()
-	create_all()
+	main()
+	# create_all()

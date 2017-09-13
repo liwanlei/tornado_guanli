@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block hellw%}
+		<div class="main" style="width:90%">
+			<div class="main-content">
+			<div class="container-fluid"></div>
+					<div class="row">
+						<div class="col-md-12" >
+							<div class="panel">
+								<div class="panel-heading">
+							<h3 class="panel-title">添加项目</h3>
+							{%if error_message%}
+		<p style="color:red">{{error_message}}</p>{%end%}</div>
+			<form action="/addproject" method="POST" >
+			{% raw xsrf_form_html() %}
+								<div class="panel-body">
+<p>项目：<input type="text" name="project"  style="background-color:dimgrey" ></p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one"></p></form>
+{%end%}
