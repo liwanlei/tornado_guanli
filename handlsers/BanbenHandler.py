@@ -22,6 +22,9 @@ class AddbanbenView(BaseHandler):
 	def post(self):
 		porject=self.get_argument('porject')
 		banbenhao=self.get_argument('banbenhao')
+		new=BanbenWrite.get_by_name(banbenhao)
+		if new:
+			self.render('addbanben.html',error_message='版本号不能重复',porjects=self.porjects)
 		shangxian=self.get_argument('shangxian')
 		test=self.get_argument('test')
 		login_user=self.get_current_user()
@@ -41,6 +44,9 @@ class Addproject(BaseHandler):
 		self.render('addporject.html',error_message=None)
 	def post(self):
 		porject=self.get_argument('project')
+		new=Project.get_by_name(porject)
+		if new:
+			self.render('addporject.html',error_message='项目名不能重复！')
 		login_user=self.get_current_user()
 		if not porject:
 			self.render('addporject.html',error_message='项目名不能为空')
@@ -70,5 +76,29 @@ class Resetbanben(BaseHandler):
 			db_session.commit()
 			self.redirect('/banben')
 		self.redirect('/banben')
-
+class EditbanbenView(BaseHandler):
+	@tornado.web.authenticated
+	def prepare(self):
+		self.porjects=db_session.query(Project).all()
+	def get(self,id):
+		banben=BanbenWrite.get_by_id(id)
+		self.render('editbanben.html',banben=banben,porjects=self.porjects,error_message=None)
+	def post(self,id):
+		banben=BanbenWrite.get_by_id(id)
+		porject=self.get_argument('porject')
+		banbenhao=self.get_argument('banbenhao')
+		shangxian=self.get_argument('shangxian')
+		test=self.get_argument('test')
+		if not banbenhao:
+			self.render('editbanben.html',banben=banben,porjects=self.porjects,error_message='请准确填写版本信息')
+		banben.banbenhao=banbenhao
+		banben.is_xian=shangxian
+		banben.is_test=test
+		banben.porject_id=int(porject)
+		try:
+			db_session.commit()
+			self.redirect('/banben')
+		except Exception as e:
+			raise e
+			self.render('editbanben.html',banben=banben,porjects=self.porjects,error_message='编辑失败')
 

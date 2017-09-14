@@ -197,13 +197,13 @@ class BugAdmin(Base):
 class TestCase(Base):
 	__tablename__='testcases'
 	id=Column(Integer(),primary_key=True)
-	porject_name=Column(String(64))
+	porject_id=Column(Integer(),ForeignKey('projects.id'))
 	casename=Column(String(64))
 	case_qianzhi=Column(String())
 	case_buzhou=Column(String())
 	case_yuqi=Column(String())
 	status=Column(Integer(),default=0)
-	case_crea_time=Column(DateTime())
+	case_crea_time=Column(DateTime(),default=datetime.datetime.now())
 	user_id=Column(Integer(),ForeignKey('users.id'))
 	def __repr__(self):
 		return self.casename
@@ -251,6 +251,7 @@ class Project(Base):
 	bug_log=relationship('BugAdmin',backref='projects')
 	banben=relationship('BanbenWrite',backref='projects')
 	testresult=relationship('TestResult',backref='projects')
+	testcase=relationship('TestCase',backref='projects')
 	def __repr__(self):
 		return self.name
 	@classmethod

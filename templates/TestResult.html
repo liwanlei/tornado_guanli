@@ -27,7 +27,10 @@
                         <td>{{testresult.creat_time}}</td>
                         <td>{{testresult.bug_first}}</td>
                         <td>{{testresult.ceshirenyuan}}</td>
-                <td>{{testresult.is_send}}</td>
+                         {%if testresult.is_send == True%}
+                        <td>发送</td>
+                        {%elif testresult.is_send ==Flase%}
+                        <td>未发送</td>{%end%}
                 <td>{{testresult.users}}</td>  
 <td>
 {%if testresult.status==0%}

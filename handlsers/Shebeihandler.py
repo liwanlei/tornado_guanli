@@ -34,6 +34,9 @@ class AddShebei(BaseHandler):
         bianhao=self.get_argument('shebeibianhao')
         fapiao=self.get_argument('fapiao')
         shebeiname=self.get_argument('shebeiname')
+        new=Shebei.get_by_name(shebeiname)
+        if new:
+            self.render('addshebei.html',user_list=user_list,error_message='设备名不能重复')
         xitong=self.get_argument('xitong')
         shebeixinghao=self.get_argument('shebeixinghao')
         quanxian=self.get_argument('quanxian')

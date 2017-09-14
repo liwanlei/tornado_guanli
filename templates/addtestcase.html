@@ -7,22 +7,19 @@
 						<div class="col-md-12" >
 							<div class="panel">
 								<div class="panel-heading">
-							<h3 class="panel-title">编辑版本</h3>
-						{%if error_message%}
+							<h3 class="panel-title">添加测试用例</h3>
+							{%if error_message%}
 		<p style="color:red">{{error_message}}</p>{%end%}</div>
-			<form action="/editbanben/{{banben.id}}" method="POST" >
+			<form action="/addtestcase" method="POST" >
 			{% raw xsrf_form_html() %}
 								<div class="panel-body">
 	<p>项目：<select  class="form-control" name='porject'>
 	{%for porject in porjects%}
 <option  value = "{{porject.id}}" name='porject'>{{porject.name}}</option >
 {%end%}</select></p>
-<p>版本号：<input type="text" name="banbenhao"  style="background-color:dimgrey"  value="{{banben.banbenhao}}"></p>
-<p>是否上线<select class="form-control" name='shangxian'>
-<option  value = "Flase" name='shangxian'>否</option >
-<option  value = "True" name='shangxian'>是</option ></select></p>
-<p>是否测试<select class="form-control" name='test'>
-<option  value = "Flase" name='test'>否</option >
-<option  value = "True" name='test'>是</option ></select></p>
+<p>测试用例名字：<input type="text" name="casename"  style="background-color:dimgrey" ></p>
+<p>前置条件：<input type="text" name="qianzhitiaojian"  style="background-color:dimgrey" ></p>
+<p>步骤：<input type="text" name="buzhou"  style="background-color:dimgrey" ></p>
+<p>预期：<input type="text" name="yuqi"  style="background-color:dimgrey" ></p>
 <input type="submit" value="添加" class="btn btn-xlarge btn-clean-one"></p></form>
 {%end%}

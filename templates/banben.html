@@ -28,8 +28,14 @@
         <tr> <td>{{banbnen.projects}}</td>
                         <td>{{banbnen.banbenhao}}</td>
                         <td>{{banbnen.creat_time}}</td>
-                        <td>{{banbnen.is_xian}}</td>
-                        <td>{{banbnen.is_test}}</td>
+                        {%if banbnen.is_xian == True%}
+                        <td>上线</td>
+                        {%elif banbnen.is_xian ==Flase%}
+                        <td>未上线</td>{%end%}
+                        {%if banbnen.is_test == True%}
+                        <td>测试</td>
+                        {%elif banbnen.is_test ==Flase%}
+                        <td>未测试</td>{%end%}
                 <td>{{banbnen.users}}</td>  
 <td>
 {%if banbnen.status==0%}
@@ -37,7 +43,7 @@
 {%elif banbnen.status==1 %}
 <button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetbanben/{{banbnen.id}}">恢复</a></button>
 {% end %}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">编辑</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/editbanben/{{banbnen.id}}">编辑</a></button>
 </td>{%end%}</tr>
 </tbody>
 </table>

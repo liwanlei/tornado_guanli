@@ -27,6 +27,9 @@ class AddUserView(BaseHandler):
         email=(self.get_argument('email'))
         iphone=(self.get_argument('iphone'))
         quanxian=(self.get_argument('quanxian'))
+        new=User.get_by_username(username)
+        if new:
+            self.render('adduser.html',error_message='用户名不能重复')
         if not(username and password and email and iphone):
             self.render('adduser.html',error_message='请完整填写信息')
         user=User.get_by_username(username)
