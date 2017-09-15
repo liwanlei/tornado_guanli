@@ -6,8 +6,8 @@ from handlsers.Shebeihandler import IndexView,ShebeiView,AddShebei,DongjieShebei
 from handlsers.UserHaders import UserView,AddUserView,QuxiaoAdmin,ShezhiAdmin,DongjieUser,JieDUser,ChongzhiUser
 from handlsers.TestResulthander import TestresultView,AddtestresultView,Deleresult,Resetresult
 from handlsers.TestCaseHandler import TestcaseView,AddtestcaseView,DeletestcaseView,ResettestcaseView,EditTestcase,Daorutestcase
-from handlsers.TestFileManHandler import TestfileView
-from handlsers.BugHandler import BugadminView
+from handlsers.TestFileManHandler import TestfileView,AddtestfileView,DeletePan,ResetpanView
+from handlsers.BugHandler import BugadminView,AddbugView,Delebug,Resetbug
 from handlsers.BanbenHandler import BanbenView,AddbanbenView,Addproject,Desetbanben,Resetbanben,EditbanbenView
 url=[
     ('/login',LoginView),
@@ -49,5 +49,11 @@ url=[
     ('/delettestcase/(?P<id>\d*)',DeletestcaseView),
     ('/huifutestcase/(?P<id>\d*)',ResettestcaseView),
     ('/editcase/(?P<id>\d*)',EditTestcase),
-    ('/daorucase',Daorutestcase)
+    ('/daorucase',Daorutestcase),
+    ('/addtestfile',AddtestfileView),
+    ('/delefilepan/(?P<id>\d*)' ,DeletePan),
+    ('/resetfilepan/(?P<id>\d*)',ResetpanView),
+    ('/addbug',AddbugView),
+        ('/delebug/(?P<id>\d*)',Delebug),
+        ('/resetbug/(?P<id>\d*)',Resetbug)
 ]

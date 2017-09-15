@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+            <div class="container-fluid"></div>
+                <div class="row">
+                    <div class="col-md-12" >
+                         <div class="panel">
+                         <div class="panel-heading">
+            <h3 class="panel-title">添加测试用例</h3>
+             {%if error_message%}<p style="color:red">{{error_message}}</p>{%end%}</div>
+            <form action="/addbug" method="POST" >
+            {% raw xsrf_form_html() %}
+                         <div class="panel-body">
+<p>项目：<select  class="form-control" name='porject'>
+    {%for porject in porjects%}
+<option  value = "{{porject.id}}" name='porject'>{{porject.name}}</option >
+{%end%}</select></p>
+<p>版本:<select class="form-control" name='banbenhao'>
+    {%for banbenhao in banbenhaos%}
+<option  value = "{{banbenhao.id}}" name='banbenhao'>{{banbenhao.banbenhao}}</option >
+{%end%}</select></p>
+<p>指派:<select class="form-control" name='user'>
+    {%for user in users%}
+<option  value = "{{user.username}}" name='user'>{{user.username}}</option >
+{%end%}</select></p>
+<p>测试标题<input type="text" name="title"></p>
+<p>复现步骤<input type="text" name="miaoshu"></p>
+{# <p>附件<input type="file" name="file"></p> #}
+<p>bug等级:<select class="form-control" name='dengji'>
+<option  value = "一级" name='dengji'>一级</option >
+<option  value = "二级" name='dengji'>二级</option >
+<option  value = "三级" name='dengji'>三级</option >
+<option  value = "四级" name='dengji'>四级</option >
+</select></p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one"></p></form>
+{%end%}

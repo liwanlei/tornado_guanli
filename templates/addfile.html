@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+            <div class="container-fluid"></div>
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="panel">
+                                <div class="panel-heading">
+                    <h3 class="panel-title">导入测试文档</h3>
+                    {%if error_message%}
+        <p style="color:red">{{error_message}}</p>{%end%}</div>
+        <form action="/addtestfile" method="POST" enctype="multipart/form-data" >
+            {% raw xsrf_form_html() %}
+                                <div class="panel-body">
+<p>文件上传：<input type="file" name="file" ></p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one" style="background-color:cornflowerblue"></p></form>
+{%end%}

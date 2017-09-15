@@ -113,11 +113,11 @@ class BanbenWrite(Base):
 	banbenhao=Column(String(32))
 	is_xian=Column(Boolean(),default=False)
 	is_test=Column(Boolean(),default=False)
-	status=Column(Integer(),default=0)
+	status=Column(Integer())
 	user_id=Column(Integer(),ForeignKey('users.id'))
 	bugadmin=relationship('BugAdmin',backref='banbens')
 	def __repr__(self):
-		return self.porject_name
+		return self.banbenhao
 	@classmethod
 	def get_by_name(cls,name):
 		item=db_session.query(BanbenWrite).filter(BanbenWrite.porject_name==name).first()
@@ -139,7 +139,7 @@ class FilePan(Base):
 	file_fenlei=Column(String(64))
 	file_name=Column(String(64))
 	down_count=Column(Integer(),default=0)
-	creat_time=Column(DateTime())
+	creat_time=Column(DateTime(),default=datetime.datetime.now())
 	status=Column(Integer(),default=0)
 	down_url=Column(String(64))
 	is_tui=Column(Boolean(),default=False)
@@ -175,6 +175,7 @@ class BugAdmin(Base):
 	bug_status=Column(String(64))
 	bug_jiejuefangan=Column(String(64))
 	bug_send=Column(String(64))
+	status=Column(Integer(),default=0)
 	bug_log=relationship('BugLog',backref='bugadmins')
 	user_id=Column(Integer(),ForeignKey('users.id'))
 	def __repr__(self):

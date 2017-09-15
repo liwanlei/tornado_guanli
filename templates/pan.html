@@ -9,11 +9,10 @@
                             <div class="panel">
                     <div class="panel-heading">
             <h3 class="panel-title">测试网盘</h3></div>
-<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
-<a href="#">添加</a></button> 
-                                <div class="panel-body">
-                    <table class="table table-striped">
-                    <thead><tr>
+<button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'><a href="/addtestfile">添加</a></button> 
+                         <div class="panel-body">
+            <table class="table table-striped">
+             <thead><tr>
         <th>分类</th>
         <th>文件名</th>
         <th>下载量</th>
@@ -24,18 +23,18 @@
         <tbody style="text-align: initial;">
         {% for filespan in filespans %}
         <tr> <td>{{filespan.file_fenlei}}</td>
-                        <td>{{filespan.file_name}}</td>
-                        <td>{{filespan.down_count}}</td>
-                        <td>{{filespan.creat_time}}</td>
+                <td>{{filespan.file_name}}</td>
+                 <td>{{filespan.down_count}}</td>
+                 <td>{{filespan.creat_time}}</td>
                 <td>{{filespan.is_tui}}</td>
                 <td>{{filespan.users}}</td>  
 <td>
 {%if filespan.status==0%}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">删除</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/delefilepan/{{filespan.id}}">删除</a></button>
 {%elif filespan.status==1 %}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">恢复</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetfilepan/{{filespan.id}}">恢复</a></button>
 {% end %}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">下载</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/">下载</a></button>
 </td>{%end%}</tr>
 </tbody>
 </table>
