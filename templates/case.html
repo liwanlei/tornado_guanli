@@ -12,7 +12,7 @@
 <button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
 <a href="/addtestcase">添加用例</a></button> 
 <button type="button" class="btn btn-default" style=' height: inherit;width: inherit;float: left;  margin-left: 2%;'>
-<a href="/addtestresult">导入用例</a></button> 
+<a href="/daorucase">导入用例</a></button> 
                                 <div class="panel-body">
                     <table class="table table-striped">
                     <thead><tr>
@@ -35,11 +35,11 @@
                 <td>{{case.users}}</td>  
 <td>
 {%if case.status==0%}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">删除</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/delettestcase/{{case.id}}">删除</a></button>
 {%elif case.status==1 %}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">恢复</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/huifutestcase/{{case.id}}">恢复</a></button>
 {% end %}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">编辑</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/editcase/{{case.id}}">编辑</a></button>
 </td>{%end%}</tr>
 </tbody>
 </table>
