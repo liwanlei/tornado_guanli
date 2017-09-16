@@ -24,7 +24,7 @@ class LoginView(BaseHandler):
             self.render('login.html', errmsg=error_message1['101'])
         if user.password != encrypt(password):
             self.render('login.html', errmsg=error_message1['102'])
-        self.set_secure_cookie("user_id", str(user.id), expires_days=7)
+        self.set_secure_cookie("user_id", str(user.id), expires_days=0.2)
         self.redirect('/index')
 class LogoutView(BaseHandler):
     def get(self):

@@ -6,13 +6,15 @@ from handlsers.Shebeihandler import IndexView,ShebeiView,AddShebei,DongjieShebei
 from handlsers.UserHaders import UserView,AddUserView,QuxiaoAdmin,ShezhiAdmin,DongjieUser,JieDUser,ChongzhiUser
 from handlsers.TestResulthander import TestresultView,AddtestresultView,Deleresult,Resetresult
 from handlsers.TestCaseHandler import TestcaseView,AddtestcaseView,DeletestcaseView,ResettestcaseView,EditTestcase,Daorutestcase
-from handlsers.TestFileManHandler import TestfileView,AddtestfileView,DeletePan,ResetpanView
+from handlsers.TestFileManHandler import TestfileView,AddtestfileView,DeletePan,ResetpanView,DownFile
 from handlsers.BugHandler import BugadminView,AddbugView,Delebug,Resetbug
 from handlsers.BanbenHandler import BanbenView,AddbanbenView,Addproject,Desetbanben,Resetbanben,EditbanbenView
+from handlsers.person import PersonCenter,AdminSet
 url=[
     ('/login',LoginView),
     ('/logout',LogoutView),
     ('/index',IndexView),
+    ('/',IndexView),
      ('/shebei',ShebeiView),
     ('/shebei/(?P<page>\d*)',ShebeiView),
      ('/user',UserView),
@@ -55,5 +57,9 @@ url=[
     ('/resetfilepan/(?P<id>\d*)',ResetpanView),
     ('/addbug',AddbugView),
         ('/delebug/(?P<id>\d*)',Delebug),
-        ('/resetbug/(?P<id>\d*)',Resetbug)
+        ('/resetbug/(?P<id>\d*)',Resetbug),
+        ('/downfile/(?P<id>\d*)',DownFile),
+        ('/person/(?P<id>\d*)',PersonCenter),
+        ('/adminset',AdminSet)
+
 ]

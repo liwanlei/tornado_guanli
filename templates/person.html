@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+            <div class="container-fluid"></div>
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="panel">
+                                <div class="panel-heading">
+                    <h3 class="panel-title">个人中心</h3>
+             {%if error_message%}
+    <p style="color:red">{{error_message}}</p>{%end%}</div>
+     <form action="/person/{{current_user.id}}" method="POST" enctype="multipart/form-data" >
+            {% raw xsrf_form_html() %}
+                            <div class="panel-body">
+            <p>原密码：<input type="password" name="yuanmima"></p>
+            <p>新密码：<input type="password" name="newpass"></p>
+            <p>确认新密码：<input type="password" name="newpass_que"></p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one" style="background-color:cornflowerblue"></p></form>
+{# {%if user.leves==1 %}
+<div> <a href="/adminset">配置系统管理员邮箱</a></div>
+{%end%} #}
+{%end%}

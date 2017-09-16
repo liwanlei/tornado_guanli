@@ -28,8 +28,6 @@ class AddbugView(BaseHandler):
         bug_tile=self.get_argument('title')
         miaoshu=self.get_argument('miaoshu')
         dengji=self.get_argument('dengji')
-        print(bug_tile)
-        # file=self.request.files.get('file',None)
         if not (porject and banbenhao and bug_send and bug_tile and miaoshu and dengji):
             self.render('addbug.html',banbenhaos=self.banbenhaos,porjects=self.porjects,users=self.users,error_message='请准确填写bug信息')
         new_bug=BugAdmin(porject_id=int(porject),ban_id=banbenhao,bugname=bug_tile,
@@ -49,7 +47,6 @@ class Delebug(BaseHandler):
             bug.status=1
             db_session.commit()
             self.redirect('/bug')
-        self.redirect('/bug')
 class Resetbug(BaseHandler):
     @tornado.web.authenticated
     def get(self,id):
@@ -58,4 +55,3 @@ class Resetbug(BaseHandler):
             bug.status=0
             db_session.commit()
             self.redirect('/bug')
-        self.redirect('/bug')

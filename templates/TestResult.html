@@ -38,7 +38,9 @@
 {%elif testresult.status==1 %}
 <button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetresult/{{testresult.id}}">恢复</a></button>
 {% end %}
-</td>{%end%}</tr>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="{{testresult.filepath}}">预览</a></button>
+</td>{%end%}
+</tr>
 </tbody>
 </table>
 </div>

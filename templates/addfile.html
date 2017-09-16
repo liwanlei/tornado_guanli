@@ -7,12 +7,21 @@
                         <div class="col-md-12" >
                             <div class="panel">
                                 <div class="panel-heading">
-                    <h3 class="panel-title">导入测试文档</h3>
+                    <h3 class="panel-title">添加测试网盘内容</h3>
                     {%if error_message%}
         <p style="color:red">{{error_message}}</p>{%end%}</div>
         <form action="/addtestfile" method="POST" enctype="multipart/form-data" >
             {% raw xsrf_form_html() %}
                                 <div class="panel-body">
+            <p>类型：<select  class="form-control" name='fenlei'>
+     <option  value = "部门专用" name='fenlei'>部门专用</option >
+<option  value = "自动化测试工具" name='fenlei'>自动化测试工具</option >
+<option  value = "自动化测试文档" name='fenlei'>自动化测试文档</option >
+<option  value = "测试需求" name='fenlei'>测试需求</option >
+<option  value = "测试工具" name='fenlei'>测试工具</option >
+<option  value = "工具集合" name='fenlei'>工具集合</option >
+<option  value = "文档集合" name='fenlei'>文档集合</option >
+</select></p>
 <p>文件上传：<input type="file" name="file" ></p>
 <input type="submit" value="添加" class="btn btn-xlarge btn-clean-one" style="background-color:cornflowerblue"></p></form>
 {%end%}

@@ -26,7 +26,11 @@
                 <td>{{filespan.file_name}}</td>
                  <td>{{filespan.down_count}}</td>
                  <td>{{filespan.creat_time}}</td>
-                <td>{{filespan.is_tui}}</td>
+            {% if filespan.is_tui==True %}
+                <td>推荐</td>
+                {%else%}
+                <td>不推荐</td>{%end%}
+
                 <td>{{filespan.users}}</td>  
 <td>
 {%if filespan.status==0%}
@@ -34,7 +38,8 @@
 {%elif filespan.status==1 %}
 <button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetfilepan/{{filespan.id}}">恢复</a></button>
 {% end %}
-<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/">下载</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="{{filespan.down_url}}">预览</a></button>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/downfile/{{filespan.id}}">下载</a></button>
 </td>{%end%}</tr>
 </tbody>
 </table>

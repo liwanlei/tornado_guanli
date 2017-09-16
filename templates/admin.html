@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+            <div class="container-fluid"></div>
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="panel">
+                                <div class="panel-heading">
+                <h3 class="panel-title">设置系统邮箱</h3>
+             {%if error_message%}
+    <p style="color:red">{{error_message}}</p>{%end%}</div>
+     <form action="/adminset" method="POST" enctype="multipart/form-data" >
+            {% raw xsrf_form_html() %}
+                            <div class="panel-body">
+        <p>邮箱：<input type="text" name="email"></p>
+     <p>安全登录密码：<input type="text" name="password"></p>
+<input type="submit" value="添加" class="btn btn-xlarge btn-clean-one" style="background-color:cornflowerblue"></p></form>
+
+{%end%}

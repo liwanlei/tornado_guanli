@@ -6,6 +6,7 @@ from handlsers.Basehandler import BaseHandler
 from models.model_py import TestResult,db_session,Project,User
 from untils.pagination import Pagination
 import os,datetime 
+from untils.shangChuan import sendfile
 class TestresultView(BaseHandler):
 	@tornado.web.authenticated
 	def get(self,page=1):
@@ -37,6 +38,10 @@ class AddtestresultView(BaseHandler):
 			file_path = os.path.join(upload_path, filename)
 			with open(file_path, 'wb') as up:
 				up.write(meta['body'])
+		m=sendfile(filename,file_path)
+		if m==False:
+			self.render('addtestresult.html',user_list=self.user_list,porjects=self.porjects,error_message='上传失败')
+		file_url='http://owd1oye3g.bkt.clouddn.com/%s'%filename
 		if bugnum=='':
 			bugnum=0
 		try:
@@ -44,7 +49,7 @@ class AddtestresultView(BaseHandler):
 		except:
 			self.render('addtestresult.html',user_list=self.user_list,porjects=self.porjects,error_message='bug数量为数字')
 		new_test=TestResult(porject_id=int(porject),creat_time=datetime.datetime.strptime(testtime,"%Y-%m-%d"),
-			bug_first=bugnum,ceshirenyuan=str(ceshizhe),is_send=fasong,filepath=file_path,user_id=int(user_shang))
+			bug_first=bugnum,ceshirenyuan=str(ceshizhe),is_send=fasong,filepath=file_url,user_id=int(user_shang))
 		db_session.add(new_test)
 		try:
 			db_session.commit()
