@@ -55,3 +55,11 @@ class Resetbug(BaseHandler):
             bug.status=0
             db_session.commit()
             self.redirect('/bug')
+class GuanbiBug(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        bug=BugAdmin.get_by_id(id)
+        if bug and bug.status==1:
+            bug.status=0
+            db_session.commit()
+            self.redirect('/bug')
