@@ -11,7 +11,7 @@ import  setting
 from models.model_py import create_all
 from models.dataconfig import db_session,drop_all
 from urls import url
-define("port", default=5000, type=int, help="run server on the given port")
+define("port", default=3387, type=int, help="run server on the given port")
 class Application(tornado.web.Application):
 	def __init__(self, *args, **kwargs):
 		super(Application, self).__init__(*args, **kwargs)

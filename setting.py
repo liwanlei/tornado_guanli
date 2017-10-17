@@ -8,5 +8,5 @@ settings = dict(
         xsrf_cookies=True,
         login_url="/login",
         template_path=os.path.join(os.path.dirname(__file__), 'templates'),
-        debug=True
+#        debug=True
     )
