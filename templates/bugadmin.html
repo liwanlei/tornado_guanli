@@ -33,11 +33,11 @@
                 <td>{{bug.bug_send}}</td>   
 <td>
 {%if bug.status==0%}
-<input type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/delebug/{{bug.id}}">删除</a></input>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/delebug/{{bug.id}}">删除</a></button>
 {%elif bug.status==1 %}
-<input type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetbug/{{bug.id}}">恢复</a></input>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="/resetbug/{{bug.id}}">恢复</a></button>
 {% end %}
-<input type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">关闭</a></input>
+<button type="button" class="btn btn-default"value='' style=' height: inherit;width: inherit;'><a href="#">关闭</a></button>
 </td>{%end%}</tr>
 </tbody>
 </table>

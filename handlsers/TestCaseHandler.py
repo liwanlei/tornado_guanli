@@ -28,6 +28,8 @@ class AddtestcaseView(BaseHandler):
 		testcasebuzhou=self.get_argument('buzhou')
 		testcaseyuqi=self.get_argument('yuqi')
 		logurl=self.get_current_user()
+		if len(testcasename)>30 or len(testcasename)<0:
+			self.render('addtestcase.html',porjects=self.project,error_message='用例名字不能过长')
 		if not(porject and testcasename and testcasebuzhou and testcaseyuqi):
 			self.render('addtestcase.html',porjects=self.project,error_message='请确认用例必要信息填写是否完整')
 		new_testcas=TestCase(porject_id=int(porject),casename=testcasename,case_qianzhi=testcaseqianzhi,case_buzhou=testcasebuzhou,case_yuqi=testcaseyuqi,user_id=logurl.id)
