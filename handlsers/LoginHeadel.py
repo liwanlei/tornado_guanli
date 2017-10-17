@@ -11,16 +11,17 @@ class LoginView(BaseHandler):
         self.render('login.html',errmsg=None)
     def post(self):
         error_message1={
-            '100':'信息不全',
+            '100':'用户信息不全',
+	    '103':'请输入密码',
             '101':'用户不存在',
             '102':'密码错误'
         }
         username=self.get_argument('username','')
         password=self.get_argument('password','')
-        if not username :
-            self.write(dict(errmsg=error_message1['100']))
-        if not password :
-            self.write(dict(errmsg=error_message1['100']))
+        if not (username and password) :
+            self.render('login.html', errmsg=error_message1['100'])
+        #if not password :
+            #self.render('login.html', errmsg=error_message1['103'])
         user = User.get_by_username(username)
         if not user:
             self.render('login.html', errmsg=error_message1['101'])
