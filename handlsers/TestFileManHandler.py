@@ -40,7 +40,7 @@ class AddtestfileView(BaseHandler):
             db_session.commit()
             self.redirect('/filepan')
         except Exception as e:
-            raise e
+           # raise e
             self.render('daorutestcase.html',error_message='上传失败')
 class DeletePan(BaseHandler):
     @tornado.web.authenticated

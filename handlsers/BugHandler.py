@@ -70,7 +70,7 @@ class CaozuoBug(BaseHandler):
             bug=BugAdmin.get_by_id(id)
             self.render('caobug.html',bug=bug,error_message=None)
         except Exception as e:
-            raise e
+           # raise e
             self.redirect('/bug')
         
         

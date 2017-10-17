@@ -99,6 +99,6 @@ class EditbanbenView(BaseHandler):
 			db_session.commit()
 			self.redirect('/banben')
 		except Exception as e:
-			raise e
+			#raise e
 			self.render('editbanben.html',banben=banben,porjects=self.porjects,error_message='编辑失败')
 

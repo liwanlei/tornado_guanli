@@ -17,7 +17,9 @@ class LoginView(BaseHandler):
         }
         username=self.get_argument('username','')
         password=self.get_argument('password','')
-        if not(username and password):
+        if not username :
+            self.write(dict(errmsg=error_message1['100']))
+        if not password :
             self.write(dict(errmsg=error_message1['100']))
         user = User.get_by_username(username)
         if not user:

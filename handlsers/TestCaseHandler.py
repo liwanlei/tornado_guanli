@@ -36,7 +36,7 @@ class AddtestcaseView(BaseHandler):
 			db_session.commit()
 			self.redirect('/testcase')
 		except Exception as e:
-			raise e
+			#raise e
 			self.render('addtestcase.html',porjects=self.porjects,error_message='添加用例失败！')
 class DeletestcaseView(BaseHandler):
 	@tornado.web.authenticated
@@ -83,7 +83,7 @@ class EditTestcase(BaseHandler):
 			db_session.commit()
 			self.redirect('/testcase')
 		except Exception as e:
-			raise e
+			#raise e
 			self.render('editcase.html',porjects=self.porjects,case=testcase,error_message='编辑用例信息失败')
 class Daorutestcase(BaseHandler):
 	@tornado.web.authenticated
@@ -110,5 +110,5 @@ class Daorutestcase(BaseHandler):
 			db_session.commit()
 			self.redirect('/testcase')
 		except Exception as e:
-			raise e
+			#raise e
 			self.render('daorutestcase.html',error_message='上传失败')
