@@ -31,7 +31,7 @@ class AddbugView(BaseHandler):
         if not (porject and banbenhao and bug_send and bug_tile and miaoshu and dengji):
             self.render('addbug.html',banbenhaos=self.banbenhaos,porjects=self.porjects,users=self.users,error_message='请准确填写bug信息')
         new_bug=BugAdmin(porject_id=int(porject),ban_id=banbenhao,bugname=bug_tile,
-            bugdengji=dengji,bug_miaoshu=miaoshu,bug_send=bug_send)
+            bugdengji=dengji,bug_miaoshu=miaoshu,bug_send=bug_send,user_id=self.get_current_user().id)
         db_session.add(new_bug)
         try:
             db_session.commit()
@@ -63,3 +63,14 @@ class GuanbiBug(BaseHandler):
             bug.status=0
             db_session.commit()
             self.redirect('/bug')
+class CaozuoBug(BaseHandler):
+    @tornado.web.authenticated
+    def get(self,id):
+        try:
+            bug=BugAdmin.get_by_id(id)
+            self.render('caobug.html',bug=bug,error_message=None)
+        except Exception as e:
+            raise e
+            self.redirect('/bug')
+        
+        

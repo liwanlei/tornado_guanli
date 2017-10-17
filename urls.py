@@ -7,7 +7,7 @@ from handlsers.UserHaders import UserView,AddUserView,QuxiaoAdmin,ShezhiAdmin,Do
 from handlsers.TestResulthander import TestresultView,AddtestresultView,Deleresult,Resetresult
 from handlsers.TestCaseHandler import TestcaseView,AddtestcaseView,DeletestcaseView,ResettestcaseView,EditTestcase,Daorutestcase
 from handlsers.TestFileManHandler import TestfileView,AddtestfileView,DeletePan,ResetpanView,DownFile
-from handlsers.BugHandler import BugadminView,AddbugView,Delebug,Resetbug
+from handlsers.BugHandler import BugadminView,AddbugView,Delebug,Resetbug,CaozuoBug
 from handlsers.BanbenHandler import BanbenView,AddbanbenView,Addproject,Desetbanben,Resetbanben,EditbanbenView
 from handlsers.person import PersonCenter,AdminSet
 url=[
@@ -60,6 +60,7 @@ url=[
         ('/resetbug/(?P<id>\d*)',Resetbug),
         ('/downfile/(?P<id>\d*)',DownFile),
         ('/person/(?P<id>\d*)',PersonCenter),
-        ('/adminset',AdminSet)
+        ('/adminset',AdminSet),
+        ('/caozuo/(?P<id>\d*)',CaozuoBug)
 
 ]

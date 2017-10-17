@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block hellw%}
+        <div class="main" style="width:90%">
+            <div class="main-content">
+            <div class="container-fluid"></div>
+                <div class="row">
+                    <div class="col-md-12" >
+                         <div class="panel">
+                         <div class="panel-heading">
+            <h3 class="panel-title">添加测bug</h3>
+             {%if error_message%}<p style="color:red">{{error_message}}</p>{%end%}</div>         
+                         <div class="panel-body">
+<p>测试标题<input type="text" value="{{bug.bugname}}" style="background-color: white;color: black;"></p>
+<p>复现步骤<input type="text"  value="{{bug.bug_miaoshu}}" style="background-color: white;color: black;"></p>
+<p>bug等级:{{bug.bugdengji}}</p>
+<p>历史记录</p>
+<p>1.{{bug.bugtime}} ,由：{{bug.users}} 创建</p>
+{%end%}

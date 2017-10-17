@@ -23,6 +23,7 @@ class User(Base):
 	testresult=relationship('TestResult',backref='users')
 	testcase=relationship('TestCase',backref='users')
 	buglog=relationship('BugLog',backref='users')
+	bug=relationship('BugAdmin',backref='users')
 	def __repr__(self):
 		return self.username
 	@classmethod
