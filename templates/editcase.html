@@ -15,7 +15,7 @@
 								<div class="panel-body">
 	<p>项目：<select  class="form-control" name='porject'>
 	{%for porject in porjects%}
-<option  value = "{{porject.id}}" name='porject'>{{porject.name}}</option >
+<option  value = "{{porject.id}}" {%if porject.id==case.porject_id%}selected="selected"{%end%}>{{porject.name}}</option >
 {%end%}</select></p>
 <p>测试用例名字：<input type="text" name="casename"  style="background-color:dimgrey" value="{{case.casename}}"></p>
 <p>前置条件：<input type="text" name="qianzhitiaojian"  style="background-color:dimgrey" value="{{case.case_qianzhi}}"></p>
